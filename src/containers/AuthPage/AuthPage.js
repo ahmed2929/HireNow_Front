@@ -58,7 +58,7 @@ const AuthPage=(props)=>{
       localStorage.setItem('_id',user.id);
       localStorage.setItem('act',user.act);
       localStorage.setItem('emailVerfied',user.emailVerfied);
-
+      window.location.href="/";
 
     } catch (error) {
       UpdateErrorMassge(error.message)
@@ -84,6 +84,7 @@ const AuthPage=(props)=>{
       localStorage.setItem('_id',user.id);
       localStorage.setItem('act',user.act);
       localStorage.setItem('emailVerfied',user.emailVerfied);
+      window.location.href="/";
 
     } catch (error) {
       UpdateErrorMassge(error.message)
