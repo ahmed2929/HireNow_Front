@@ -1,0 +1,131 @@
+.background{
+    background-color: #E75348;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+.card{
+    background-color: white;
+    width: 70%;
+    height: auto;
+    margin:  auto;
+    margin-top: 80px;
+    border-radius: 5px;
+}
+
+.rightCard{
+    display: inline-block;
+    float: right;
+    width: 50%;
+}
+
+.leftCard{
+margin-top: 16px;
+display: inline-block;
+width: 50%;
+}
+.SingupButton{
+    background-color: #E5E5E5;
+    width: 70px;
+    margin: 16px 0px;
+    margin-right: 30px;
+    float: right;
+    border-top-right-radius:5px ;
+    
+    border: none;
+    color: black;
+}
+.loginButton{
+
+    background-color: #E5E5E5;
+    color: black;
+    width: 70px;
+    margin: 16px 0px;
+    float: right;
+    border: none;
+    border-top-left-radius: 5px;
+  
+}
+.loginButton:hover,
+.SingupButton:hover{
+    background-color: #beb8b8;
+    
+}
+
+.activeButton{
+    background-color: #E44D3A;
+    color: white;
+}
+.activeButton:hover{
+    background-color: #c24130;
+}
+.logo{
+    color: #c24130;
+    margin: 16px 16px;
+    text-align: center;
+    font-weight: 22px;
+    font-size: bold;
+}
+
+.img{
+    width: 100%;
+    padding-left: 10px;
+    max-width: 100%;
+    float: left;
+    margin-bottom: 30px;
+}
+.intro{
+    color: #666666;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    float: left;
+    width: 100%;
+    padding-left: 8px;
+}
+
+.form{
+    width: 50%;
+    padding: 0 15px 0 40px;
+    color: #726f6f;
+    font-size: 14px;
+    border: 1px solid #e5e5e5;
+    height: 40px;
+    margin-left: 16px;
+    margin-top: 16px;
+}
+
+.SingInWord{
+    
+    color: #000000;
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+    margin-top: 50px;
+    margin-left: 16px;
+}
+
+.submitLogin{
+    background-color: #c24130;
+    width: 70px;
+    border-radius: 6px;
+    color: #e5e5e5;
+    margin: 35px 16px;
+    /* position: relative;
+    top:20px;
+    left:25px */
+
+
+}
+
+.customSelect{
+    padding-left: 16px;
+}
+.customSelect select{
+    background-color: white;
+    padding: 16px;
+    color: #524f4f;
+    width: 65%;
+    margin: 16px;
+    margin-left: 0px;
+}

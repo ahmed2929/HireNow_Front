@@ -1,0 +1,39 @@
+.profileInfo{
+ 
+   
+    margin: 16px;
+    padding: 10px;
+    cursor: pointer;
+  
+ }
+ .name{
+    
+     vertical-align: middle;
+     padding: 8px;
+     margin-bottom: 16px;
+     color: #181717;
+    font-size: 12px;
+    font-weight: 600;
+    
+ }
+ .image{
+     
+     float: left;
+     vertical-align: middle;
+     padding-left: 5px;
+ }
+ .img{
+     width: 50px;
+ }
+
+
+.latestMessage{
+    color: #b2b2b2;
+    font-size: 14px;
+    
+} 
+
+.chatDetails{
+    display: grid;
+    grid-template-rows: 50% 50%;
+}

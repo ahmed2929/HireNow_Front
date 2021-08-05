@@ -1,0 +1,179 @@
+.job{
+    
+
+    box-shadow: 0px 2px #e4e4e4;
+
+    width: 100%;
+    background-color: #fff;
+    border-left: 1px solid #e4e4e4;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 20px;
+}
+
+.profileInfo{
+ 
+    color: black;
+    /* width: 222px; */
+    display: inline-block;
+    vertical-align: middle;
+    margin: 16px;
+    padding: 10px;
+  
+ }
+ .name{
+     display: inline;
+     vertical-align: middle;
+     padding: 8px;
+     /* float: right; */
+     margin: 16px;
+     color: #000000;
+    font-size: 18px;
+    text-transform: capitalize;
+    font-weight: 600;
+    
+ }
+ .image{
+     
+     float: left;
+     vertical-align: middle;
+     padding-left: 5px;
+ }
+ .img{
+     width: 50px;
+ }
+ .content{
+     /* vertical-align: middle;
+     position: relative;
+     top: 9px; */
+         }
+
+.longAgo{
+    color: #b2b2b2;
+    font-size: 14px;
+    margin: 93px;
+    position: relative;
+    bottom: 28px;
+}         
+
+.longAgoIcon{
+    position: relative;
+    left: 82px;
+    bottom: 25px;
+    max-width: 100%;
+}
+.country{
+    color: #b2b2b2;
+    font-size: 14px;
+    margin: 3px;
+    text-transform: capitalize;
+
+}
+
+.countryIcon{
+    max-width: 100%;
+    position: relative;
+    top: 4px;
+}
+
+.jobTitle{
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.applayNow{
+    color: #fff;
+    font-size: 24px;
+    width: 169px;
+    height: auto;
+    padding-left: 0px;
+    background-color: #53d690;
+    text-align: center;
+    line-height: 30px;
+    display: inline-block;
+    border: none;
+    float: right;
+    position: relative;
+    top: 55px;
+
+}
+.applayNow:hover{
+   
+    background-color: #389563;
+   
+
+}
+
+.jobType{
+    color: #fff;
+    background-color: #51a5fb;
+    text-transform: capitalize;
+    padding: 5px 13px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.MoneyPerHour{
+    padding: 16px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    vertical-align: baseline;
+}
+
+.jobDiscribition{
+    color: #666666;
+    font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 20px;
+    padding: 16px;
+}
+
+.viewMore{
+    /* border-top: 1px solid #e5e5e5;
+    text-align: center;
+    padding: 15px 0;
+} */
+display: inline-block;
+padding-left: 5px;
+}
+.viewMore a{
+    text-decoration: none;
+    color: #e44d3a;
+    font-size: 14px;
+    font-weight: 600;
+    
+}
+
+.skills{
+    width: 100%;
+}
+
+.skill{
+    display: inline-block;
+    color: #b2b2b2;
+    font-size: 14px;
+    background-color: #f1f1f1;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 30px;
+    padding: 7px 30px;
+    font-weight: 500;
+    margin: 10px;
+}
+
+
+@media (max-width: 918px) {
+    .applayNow{
+        display: none;
+    }
+ }

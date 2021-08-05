@@ -1,0 +1,55 @@
+.createPost{
+    border: 1px solid #e5e5e5;
+    border-top:2px solid red ;
+    width:50% ;
+    height: auto;
+    display: inline-block;
+    position: relative;
+    /* left: 271px; */
+    bottom: 557px;
+    margin: 0px 325px 0px;
+    background-color: white;
+}
+
+
+.img{
+  
+    /* border-radius: 50%; */
+    
+   float: none;
+   width: 50px;
+   margin: 20px 20px 0;
+   vertical-align: middle;
+   display: inline-block;
+
+}
+
+.CreateProject{
+    vertical-align: middle;
+    display: inline-block;
+    color: white;
+    background-color: red;
+    width:130px ;
+    margin: 20px;
+    float: right;
+    border-radius: 6px;
+}
+
+.Createjob{
+    vertical-align: middle;
+    display: inline-block;
+    color: white;
+    background-color: #e5e5e5;
+    color: #b2b2b2;
+    width:130px ;
+    margin: 20px;
+    float: right;
+    border-radius: 6px;
+    border: none;
+
+}
+
+.Createjob:hover{
+    color: white;
+    background-color: red;
+}

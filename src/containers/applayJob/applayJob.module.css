@@ -1,0 +1,93 @@
+.body{
+    margin-top: 50px;
+   background-color: #F2F2F2;
+   
+ }
+ 
+ .parent{
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns:120px 150px 150px ;
+  grid-template-rows: 50px;
+}
+.label{
+color: #E44D3A;
+}
+.input{
+  
+  color: black;
+  font-size: 14px;
+  border: 1px solid #E44D3A;
+  background-color: #F2F2F2;
+ width: 500px;
+ height: 100px;
+ resize: none;
+ 
+}
+
+.input:focus
+{
+outline: none !important;
+
+}
+
+
+.addButton{
+display: inline;
+margin-left: 30px;
+}
+
+.skills{
+width: 100%;
+display: inline;
+}
+
+.skill{
+  display: inline-block;
+  color: #b2b2b2;
+  font-size: 14px;
+  background-color: #f1f1f1d2;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border-radius: 30px;
+  padding: 7px 30px;
+  font-weight: 500;
+  margin: 10px;
+}
+
+.addedTechLabel{
+  width: 50px;
+ 
+}
+.CreateJob{
+  width: auto;
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 40%;
+}
+
+.noItem{
+  color: #E44D3A;
+  text-align: center;
+}
+
+textarea::placeholder {  
+                  
+  /* Firefox, Chrome, Opera */ 
+  text-align: center; 
+  color: #b2b2b2;
+  font-size: 14px;
+  
+
+
+} 
+
+.attach{
+  margin-top: 15px;
+ 
+  cursor: pointer
+
+
+}

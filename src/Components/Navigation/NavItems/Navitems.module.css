@@ -1,0 +1,27 @@
+.NavigationItems{
+    display: inline-block;
+    padding: 8px;
+    vertical-align: middle;
+   
+    width: calc(100% - 550px);
+    text-align: center;
+   
+    display:inline-block;
+    background-color: #E44D3A;
+position: relative;
+left: 12%;
+}
+
+.HeaderContiner{
+background-color: #E44D3A;
+}
+.search{
+    vertical-align: middle;
+    margin: auto;
+    display: inline-block;
+}
+.Profile{
+    vertical-align: middle;
+    margin: auto;
+    display: inline-block;
+}

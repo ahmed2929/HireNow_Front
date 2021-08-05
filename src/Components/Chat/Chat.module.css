@@ -1,0 +1,17 @@
+.parentGrid{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns:30% auto ;
+    grid-template-rows: auto;
+}
+
+.Loader{    
+    width:50% ;
+    
+    display: inline-block;
+    position: relative;
+    left: 50%; 
+    margin-top: 30%;
+    
+
+}
