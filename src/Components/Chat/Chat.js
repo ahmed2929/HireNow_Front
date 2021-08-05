@@ -2,9 +2,9 @@ import React,{useState,useEffect} from 'react';
 import classes from "./Chat.module.css"
 import ChatUsers from './ChatUsers/ChatUsers';
 import ChatBox from './ChatBox/ChatBox';
-import {GET_CHAT_ROOMS,GET_CHAT,SEND_MESSAGE} from "../../services/graphal/chat/Chat"
+import {GET_CHAT_ROOMS,GET_CHAT,SEND_MESSAGE,MESSAGE_RECIVED} from "../../services/graphal/chat/Chat"
 import Loader from "../loader/Loader";
-import {useQuery ,useLazyQuery,useMutation} from '@apollo/client';
+import {useQuery ,useLazyQuery,useMutation,useSubscription} from '@apollo/client';
 const Chat = props => {
   
   const [ChatRoomUsers ,setChatRoomUsers]=useState([])
@@ -24,7 +24,45 @@ const Chat = props => {
 
   const [getChatBoxMessages, { loading:loadingChatBox, data:chatBoxData }]= useLazyQuery(GET_CHAT)
   const [sendMessageMutation, { data:sendMessageData, loading:sendMessageMutationLoading, error:sendMessageMutationError }] = useMutation(SEND_MESSAGE);
+  const { data:newMessageSubscriptionData, error:subscriptionError} = useSubscription(MESSAGE_RECIVED);
 
+  useEffect(()=>{
+    if(subscriptionError){
+      console.log("subscription error",subscriptionError)
+    }
+
+    if(newMessageSubscriptionData){
+      console.log("newMessageSubscriptionData",newMessageSubscriptionData.newMessage)
+      let index = ChatRoomUsers.findIndex(user => user.user.id === newMessageSubscriptionData.newMessage.from);
+      if(index > -1){
+
+        let newArr = [...ChatRoomUsers]; // copying the old datas array
+        newArr[index] = {
+          ...newArr[index],
+          latestMessage:{
+            ...newArr[index].latestMessage,
+            content:newMessageSubscriptionData.newMessage.content,
+          } 
+        };
+
+        setChatRoomUsers(newArr);
+      }
+
+
+      setMessages([...messages,newMessageSubscriptionData.newMessage]);
+
+    }
+
+  },[newMessageSubscriptionData,subscriptionError])
+
+
+  useEffect(()=>{
+    if(chatBoxData){
+      setMessages(chatBoxData.getChat.messages)
+    }
+    
+
+  } ,[chatBoxData])
 
   const sendMessage =async(e,message,roomId,to)=>{
 
@@ -33,6 +71,21 @@ const Chat = props => {
       e.preventDefault();
       const from = localStorage.getItem("_id")
       setMessages([...messages,{content:message,from:from}]);
+      let index = ChatRoomUsers.findIndex(user => user.user.id === to);
+      if(index > -1){
+
+        let newArr = [...ChatRoomUsers]; // copying the old datas array
+        newArr[index] = {
+          ...newArr[index],
+          latestMessage:{
+            ...newArr[index].latestMessage,
+            content:message,
+          } 
+        };
+
+        setChatRoomUsers(newArr);
+      }
+
       
       const {data}= await sendMessageMutation({ variables: { roomId: roomId, content:message,to:to},
        
@@ -56,13 +109,7 @@ const Chat = props => {
   }
 
 
-  useEffect(()=>{
-    if(chatBoxData){
-      setMessages(chatBoxData.getChat.messages)
-    }
-    
-
-  } ,[chatBoxData])
+  
 
 
   const handleChatBox=async (RoomId,to)=>{

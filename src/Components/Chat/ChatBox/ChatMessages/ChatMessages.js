@@ -13,7 +13,10 @@ const Messages = ({ messages }) => {
   return(
   
   <div className="messages">
-    {messages.map((message, i) => <div key={i}><Message message={message} /></div>)}
+    {messages.length>0?
+    messages.map((message, i) => <div key={i}><Message message={message} /></div>):
+    <p>send quick messgae</p>
+    }
   </div>
 );
 

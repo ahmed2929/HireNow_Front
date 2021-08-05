@@ -8,9 +8,11 @@ import {Provider} from "react-redux"
 import {createStore,applyMiddleware,compose,combineReducers} from "redux"
 import thunk from "redux-thunk"
 import AuthReducer from "./store/reducer/Auth"
+import { WebSocketLink } from '@apollo/client/link/ws';
 
-import { ApolloClient, InMemoryCache ,ApolloProvider,createHttpLink} from '@apollo/client';
+import { ApolloClient, InMemoryCache ,ApolloProvider,createHttpLink,split, HttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
+import { getMainDefinition } from '@apollo/client/utilities';
 
 const rootRducer=combineReducers({
   Auth:AuthReducer
@@ -25,7 +27,20 @@ const store = createStore(rootRducer,composeEnhancers(applyMiddleware(thunk)));
 const cache = new InMemoryCache();
 
 
-const httpLink = createHttpLink({
+
+const wsLink = new WebSocketLink({
+  uri: 'ws://localhost:3006/graphql',
+  options: {
+    reconnect: true,
+    connectionParams: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  },
+});
+
+
+
+let httpLink = createHttpLink({
   uri: 'http://localhost:3006/graphql',
 });
 
@@ -41,10 +56,27 @@ const authLink = setContext((_, { headers }) => {
   }
 });
 
+httpLink=authLink.concat(httpLink)
+
+
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+)
+
+
 const client = new ApolloClient({
   // Provide required constructor fields
   cache: cache,
-  link: authLink.concat(httpLink),
+  link: splitLink,
 
   // Provide some optional constructor fields
   name: 'react-web-client',

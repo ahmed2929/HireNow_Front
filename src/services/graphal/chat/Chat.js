@@ -47,9 +47,27 @@ gql`
 
   }
 
+
+
  
 
 `;
+
+
+
+
+
+export const MESSAGE_RECIVED = gql`
+  subscription newMessage {
+    newMessage {
+      RoomId,
+    content,
+    from,
+    to
+    }
+  }
+`;
+
 
 
 

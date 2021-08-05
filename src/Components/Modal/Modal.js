@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from "./Modal.module.css"
 const Modal = props => {
+  console.log(props);
     const divStyle={
         display:props.displayModal? 'block' :'none'
     }
@@ -8,6 +9,7 @@ const Modal = props => {
     const closeModal=(e)=>{
         e.stopPropagation();
         props.closeModal()
+        props.setShowModal(false)
     }
 
   return (

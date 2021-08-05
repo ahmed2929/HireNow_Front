@@ -16,8 +16,8 @@ function NavItems() {
       <ul className={classes.NavigationItems}>
         <NavigationItem link="/" exact>Home</NavigationItem>
         <NavigationItem link="/proposals">proposals</NavigationItem>
-        <NavigationItem link="/messages">messages</NavigationItem>
-        <NavigationItem link="/notifications">notifications</NavigationItem>
+        <NavigationItem link="/chat">chat</NavigationItem>
+        
       
     </ul>
     <div className={classes.Profile}>

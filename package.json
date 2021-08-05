@@ -20,6 +20,7 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
+    "subscriptions-transport-ws": "^0.9.19",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

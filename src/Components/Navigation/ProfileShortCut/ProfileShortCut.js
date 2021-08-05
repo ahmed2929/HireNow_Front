@@ -17,7 +17,7 @@ function Profile(props) {
         </div>
            </div> */}
     <div className={classes.dropdown}>
-  <button className={classes.dropbtn}>Dropdown</button>
+  <button className={classes.dropbtn}>viewMore</button>
   <div className={classes.dropdownContent}>
     <a href="#">view profile</a>
     <a href="#">settings</a>
