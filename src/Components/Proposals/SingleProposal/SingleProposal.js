@@ -197,11 +197,21 @@ if (loading) return (
           </div>)
           })
         }
-        {props.proposalData.file_uri?<p>attachedFile: <a href={props.proposalData.file_uri} download> download</a> </p>:null}
-    
-    <button className={classes.button} onClick={(e)=>acceptPropsalHandler(e,props.key)}>accept</button>
+        {props.proposalData.file_uri?<p className={classes.jobDiscribition}>attachedFile: <a href={props.proposalData.file_uri} download className={classes.downloadButton}> download</a> </p>:null}
+   {
+     props.act ==='2' ?  
+     <react.Fragment>
+       <button className={classes.button} onClick={(e)=>acceptPropsalHandler(e,props.key)}>accept</button>
     <button className={classes.button} onClick={rejectPropsalHandler}>reject</button>
     <button className={classes.button} onClick={chatHandler}>chat</button>
+     </react.Fragment>
+     
+     
+     : <p className={classes.jobDiscribition}>proposal status : <span className={classes.skill}>{props.proposalData.status}</span>  </p>
+
+
+   }
+    
           
         
 

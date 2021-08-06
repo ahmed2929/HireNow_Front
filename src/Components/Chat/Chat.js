@@ -163,7 +163,7 @@ const Chat = props => {
         
 
     }else{
-      ChatBoxDiplay=<p>no chat to be displayed</p>
+      ChatBoxDiplay=<p style={{padding:'0px 10px',color: 'gray',margin: "28%"} }>no chat to be displayed</p>
     }
 
 

@@ -14,6 +14,7 @@ gql`
         photo
         
       },
+      status,
       file_uri,
       job_id{
         id,
