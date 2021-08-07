@@ -114,7 +114,7 @@ const AuthPage=(props)=>{
     <input type="email" placeholder="email" className={classes.form}   onChange={(event)=>updateEmail(event.target.value)} ></input>
         <input type="password" placeholder="password" className={classes.form}  onChange={(event)=>updatePassword(event.target.value)}></input> 
         <div>
-        <button className={classes.submitLogin} onClick={(event)=>SubmitLogin(event)} disabled={loading} onKeyPress={(e) => e.key === 'Enter' ? SubmitLogin(e):null}>login</button>
+        <button className={classes.submitLogin} onClick={(event)=>SubmitLogin(event)} disabled={loading}  onKeyPress={event => event.key === 'Enter' ? SubmitLogin(event) : null}>login</button>
        
           </div> 
         </react.Fragment>
@@ -156,7 +156,7 @@ const AuthPage=(props)=>{
     </div>
     
         <div>
-        <button className={classes.submitLogin} onClick={SubmitRegister} onKeyPress={(e) => e.key === 'Enter' ? SubmitRegister():null}>singup</button>
+        <button className={classes.submitLogin} onClick={SubmitRegister}  onKeyPress={event => event.key === 'Enter' ? SubmitRegister : null}>singup</button>
           </div> 
         </react.Fragment>
       )
