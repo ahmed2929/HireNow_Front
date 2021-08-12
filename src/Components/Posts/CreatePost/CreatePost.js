@@ -23,6 +23,7 @@ function CreatePost() {
       <Modal 
         displayModal={ModalState}
         closeModal={closeModal}
+        setShowModal={setModalState}
       > <CreateJob closeModal={closeModal}/> </Modal>
     </react.Fragment>
   );

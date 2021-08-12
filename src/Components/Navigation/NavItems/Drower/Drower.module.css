@@ -31,3 +31,20 @@
     text-align: center;
 }
 
+@media only screen and (max-width: 1030px) {
+   
+    .NavigationItem{
+        display: block;
+        padding: 10px;
+        font-weight: 300;
+        font-size: 22px;
+    
+    
+        text-decoration: none;
+        color: #E44D3A;
+        list-style: none;
+        
+    }
+    
+
+  }

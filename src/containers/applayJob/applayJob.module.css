@@ -19,9 +19,10 @@ color: #E44D3A;
   font-size: 14px;
   border: 1px solid #E44D3A;
   background-color: #F2F2F2;
- width: 500px;
+ width: auto;
  height: 100px;
  resize: none;
+ overflow: hidden;
  
 }
 
