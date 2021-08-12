@@ -1,10 +1,22 @@
-import react from "react"
+import react,{useState} from "react"
 import classes from "./Navitems.module.css"
 import NavigationItem from "./NavItem/NavItem"
 import sharedClasses from "../../../asset/sharedcss.module.css"
 import Profile from "../ProfileShortCut/ProfileShortCut"
 import Search from "../../UI/Search/Search"
-function NavItems() {
+import Drower from "./Drower/Drower"
+function NavItems(props) {
+  const [showDrawer, setShowDrawer] = useState(false)
+  const handleDrwaerClick=()=>{
+    setShowDrawer(!showDrawer)
+
+    
+  }
+
+  const closeDrawer=()=>{
+    setShowDrawer(false)
+  }
+
   return (
     <react.Fragment>
       <div className={sharedClasses.continer}>
@@ -20,10 +32,20 @@ function NavItems() {
         
       
     </ul>
+
+    <div className={classes.DrawerToggle} onClick={handleDrwaerClick}>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <Drower open ={showDrawer} closed={closeDrawer}/>
+
     <div className={classes.Profile}>
       
     <Profile />
     </div>
+    
     
 
         </div>

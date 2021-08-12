@@ -77,3 +77,8 @@
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #be2f1d;}
+  @media only screen and (max-width: 1030px) {
+    .dropdown{
+      display: none;
+    }
+  }
