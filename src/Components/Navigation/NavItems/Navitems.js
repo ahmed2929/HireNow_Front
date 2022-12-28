@@ -22,13 +22,13 @@ function NavItems(props) {
       <div className={sharedClasses.continer}>
         <div className={classes.HeaderContiner}>
         <div className={classes.search}>
-        <Search />
+        
         </div>
         
       <ul className={classes.NavigationItems}>
         <NavigationItem link="/" exact>Home</NavigationItem>
-        <NavigationItem link="/proposals">proposals</NavigationItem>
-        <NavigationItem link="/chat">chat</NavigationItem>
+        <NavigationItem link="/medication">medication</NavigationItem>
+        <NavigationItem link="/doses">doses</NavigationItem>
         
       
     </ul>

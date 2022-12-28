@@ -1,54 +1,46 @@
-import react,{useState} from "react"
-import classes from "./applayJob.module.css"
+import react,{useEffect, useState} from "react"
 import continer from "../../asset/sharedcss.module.css"
 import NavBar from "../../Components/Navigation/ToolBar/ToolBar"
-import queryString from 'query-string';
-import Jobs from "../../Components/jobs/jobs"
+import classes from "./applayJob.module.css"
 import { withRouter,Redirect} from 'react-router-dom';
-import {useQuery } from '@apollo/client';
 import { connect } from 'react-redux';
-import {GET_JOB} from "../../services/graphal/jobs/getJob.js"
 import Loader from "../../Components/loader/Loader";
 import axios from 'axios';
-import { useMutation,useLazyQuery } from '@apollo/client';
-import {applayJob} from "../../services/graphal/jobs/jobDataSchema" 
-
+import Calendar from 'react-calendar';
+import BaseUrl from "../../StaticData";
+import "./applayJob.module.css"
 const HomePage=(props)=>{
-    const { id } = queryString.parse(props.location.search);
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [Comment, setComment] = useState(null);
-    const [file_uri, setFile_uri] = useState(null);
+    const [loading,setLoading]= useState(false);
+    const [error,setError]= useState(false);
+    const [date, setDate] = useState(new Date());
+    const [doses,setDoses] =useState([])
 
-    const [applayJobMutation,applayLoading] = useMutation(applayJob,{
-      variables:{
-        job_id:id,
-        file_uri:file_uri,
-        Comment:Comment
-      }
-  })
- 
-
-  const handleApplayJob=async ()=>{
-    if(selectedFile){
-      const formData = new FormData();
-      formData.append(
-        "file",
-        selectedFile,
-        selectedFile.name
-      );
-      const {data}=await  axios.post("http://localhost:3006/upload", formData);
-      setFile_uri(data.url);
+    const onChange = (selectedDate) => {
+      setDate(selectedDate);
     }
    
-    const {data}= await applayJobMutation()
-    console.debug("graph data",data)
-    window.location.href = "http://localhost:3000";
-  
-  }
-    const { loading, error, data } = useQuery(GET_JOB, {
-      variables: { id },
-    });
-  
+    useEffect(()=>{
+      setLoading(true)
+      axios.get(`${BaseUrl}general/doses?date=${date.getTime()}`,{
+        headers:{
+          "Authorization":`Bearer ${props.userInfo.token}`
+        }
+      })
+      .then(res=>{
+        setLoading(false)
+        console.log(res.data.data.data)
+        setDoses(res.data.data.data)
+      })
+      .catch(err=>{
+        setLoading(false)
+        setError(err)
+      })
+
+
+
+    },[date])
+
+
     if (loading) return (
       <div className={classes.Loader} >
       <Loader />  
@@ -57,95 +49,51 @@ const HomePage=(props)=>{
       
     
       )
-      if(applayLoading.loading){
-        <div className={classes.Loader} >
-        <Loader />  
-          </div>
-      }
-    
+ 
     if (error) return `Error! ${error}`;
   
+    
   
-      console.log(data.getJob);
-
-  
-     
-    //nav
-    return (
+     return (
         <react.Fragment>
             <NavBar />
-            
-            <div className={continer.continer+' '+classes.body}>
-                
-            <from>
-      <div className={classes.parent}>
-      <p className={classes.label}>title :</p>
-      <p>{data.getJob.title}</p>
-      </div>  
-      <div className={classes.parent}>
-      <p className={classes.label}>country :</p>
-      <p>{data.getJob.country}</p>
-      </div> 
-      <div className={classes.parent}>
-      <p className={classes.label}>hour rate :</p>
-      <p>{data.getJob.salary}</p>
-      </div> 
-
-      <div className={classes.parent}>
-      <p className={classes.label}>job type</p>
-      <p>{data.getJob.jobType}</p>
-      </div> 
-
-      <div className={classes.parent}>
-      <p className={classes.label}>job description :</p>
-      <p>{data.getJob.Descrition}</p>
-      </div>   
-    
-      
-      <p className={classes.label}>technology added :</p>
-      <div className={classes.skils}>
-
-      {
-       
-       data.getJob.technologies.length<1?<p className={classes.noItem} >no item to be dispay</p>:
-       data.getJob.technologies.map((element,i) => {
-          return(
-          <div className={classes.skill} key={i}>
-            {element}
-            
-          </div>)
-        })
-      }
           
+            <Calendar onChange={onChange}   value={date}  className={classes.calendar}/>
+           <p style={{margin:"15px"}}>{`curent date is ${date}`}</p>
+          <p>{error}</p>
+          <div className={classes.doses}>
+            {doses.length>0 ? doses.map(dose=>
 
-        </div>
-      {data.getJob.canApplay?<div className={classes.parent}>
-      <p className={classes.label}>attach File :</p>
-      <input  type="file" className={classes.attach} onChange={(e)=>setSelectedFile(e.target.files[0] )}></input>
-      </div> :null  }
-        
-      {
-        data.getJob.canApplay?<div className={classes.parent}>
-        <p className={classes.label}>job proposal :</p>
-        <textarea  className={classes.input} placeholder="your proposal" onChange={(e)=>setComment(e.target.value)} ></textarea>
-        </div> :null  
-      }
-        
-      
-      
-      {
-        data.getJob.canApplay ? <button className={classes.CreateJob} onClick={handleApplayJob} >applay now</button> : <p style={{color:"red",position:"relative",left:"50%"}}>you aready applayed</p> 
-         
-      }
-      
-     
+<div className={classes.medication}>
+<div className={classes.medication_header}>
+  <img src={dose.MedInfo.img||'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwtj43GM1cgJmdGTKQyJASVq-9KlbYot3L_ZEiXjvbvh0zJ_2YwEQPXZc&s=10'} alt="medication" />
+  <div className={classes.medication_info}>
+    <div className={classes.medication_name}>{dose.MedInfo.name}</div>
+    <div className={classes.medication_strength}>{dose.MedInfo.strenth} {dose.MedInfo.unit}</div>
+  </div>
+</div>
+<div className={classes.medication_body}>
+  <div className={classes.medication_planned_time}>Planned time: {
+  `${new Date( dose.PlannedDateTime).toLocaleTimeString()}`
+ 
   
-      </from>
-              
-            </div>
+  }</div>
+  <div className={classes.medication_planned_dose}>Planned dose: {dose.PlannedDose}</div>
+  <div className={classes.medication_status}>Status: {dose.Status}</div>
+  <div className={classes.medication_condition}>Condition: {dose.MedInfo.condition}</div>
+        <div className={classes.medication_instructions}>Instructions: {dose.MedInfo.instructions}</div>
+      </div>
+    </div>
+
+
+        ):<h1>No doses</h1>}
+            
+          </div>
+            
         </react.Fragment>
-        
-    )
+     )
+   
+   
 }
 
 const mapStateToProps = state => {

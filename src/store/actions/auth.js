@@ -34,12 +34,12 @@ export const logout=()=>{
       localStorage.removeItem('expireDate');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('user');
-      localStorage.removeItem('_id');
-      localStorage.removeItem('act');
-      localStorage.removeItem('emailVerfied');
-      localStorage.removeItem('name');
+      localStorage.removeItem('firstName');
+      localStorage.removeItem('lastName');
+      localStorage.removeItem('lang');
       localStorage.removeItem('email');
-      localStorage.removeItem('photo');
+      localStorage.removeItem('verifed');
+     
     return {
         type:actionTypes.AUTH_LOGOUT,
        
@@ -47,7 +47,7 @@ export const logout=()=>{
 }
 
 export const checkAuthTimeOut=(expireIn)=>{
-    const expire=expireIn||3600000
+    const expire=expireIn||1.2e+6
     return dispatch=>{
         setTimeout(()=>{
             dispatch(logout())
@@ -88,19 +88,16 @@ export const autoLogin=()=>{
 
         }else{
             const refreshToken=localStorage.getItem('refreshToken');
-            const name =localStorage.getItem('name');
+            const firstName =localStorage.getItem('firstName');
+            const lastName =localStorage.getItem('lastName');
+            const lang =localStorage.getItem('lang');
             const email =localStorage.getItem('email');
-            const photo =localStorage.getItem('photo'); 
-          const id=  localStorage.getItem('_id');
-            const act= localStorage.getItem('act');
-            const emailVerfied= localStorage.getItem('emailVerfied');
             const user ={
-                name,
+                firstName,
+                lastName,
+                lang,
                 email,
-                photo,
-                id,
-                act,
-                emailVerfied
+               
             }
             dispatch(authSuccess(token,refreshToken,user))
             const time=(expireDate.getTime()- new Date().getTime())

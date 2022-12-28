@@ -72,6 +72,22 @@ display:inline-block;
     
 }
 
+.button{
+    background-color: #e44d3a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 auto;
+    display: block;
+    margin-top: 16px;
+    width: 121px;
+    margin-left: 30%;
+}
+
 @media only screen and (max-width: 1030px) {
    
     .card{

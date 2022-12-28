@@ -1,16 +1,51 @@
-import react from "react"
+import react,{useState,useEffect} from "react"
 import classes from "./Search.module.css"
+import Turnstone from 'turnstone'
 
-function Search() {
+
+function Search(props) {
+  const [searchResults, setSearchResults] = useState([]);
+  const [selectedResult, setSelectedResult] = useState(null);
+  const [query,setQuery]=useState(null)
+
+  useEffect(() => {
+    if (query) {
+      fetch(`https://voithy-dev-v1.azurewebsites.net/api/v1/general/search?name=${query}`)
+        .then(response => response.json())
+        .then(data => setSearchResults(data.data.data));
+    }
+  }, [query]);
+
+  const handleResultSelection = result => {
+    setSelectedResult(result);
+    props.handleMedCreation(result)
+  };
+
   return (
-    <react.Fragment>
-     
-  <input type="text" placeholder="Search.." name="search" className={classes}/>
-  <button ><i className="fa fa-search"></i></button>
-
-     
-    </react.Fragment>
+    <div>
+      <input
+        type="text"
+        value={query}
+        onChange={event => setQuery(event.target.value)}
+        placeholder="search for med"
+      />
+      {searchResults.length > 0 && (
+        <ul>
+          {searchResults.map(result => (
+            <li key={result.id} onClick={() => handleResultSelection(result)}>
+              {result.PackageName} ({result.GenericName})
+            </li>
+          ))}
+        </ul>
+      )}
+      {selectedResult && (
+        <div>
+          You selected: {selectedResult.PackageName} ({selectedResult.GenericName})
+        </div>
+      )}
+    </div>
   );
 }
+
 
 export default Search;

@@ -1,94 +1,90 @@
-.body{
-    margin-top: 50px;
-   background-color: #F2F2F2;
-   
- }
- 
- .parent{
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns:120px 150px 150px ;
-  grid-template-rows: 50px;
-}
-.label{
-color: #E44D3A;
-}
-.input{
-  
-  color: black;
-  font-size: 14px;
-  border: 1px solid #E44D3A;
-  background-color: #F2F2F2;
- width: auto;
- height: 100px;
- resize: none;
- overflow: hidden;
- 
-}
-
-.input:focus
-{
-outline: none !important;
-
-}
 
 
-.addButton{
-display: inline;
-margin-left: 30px;
+.calendar {
+  font-size: 18px !important;
+  font-family: sans-serif !important; 
+  color: #333 !important;
+  background-color: #fff !important;
+  border: 1px solid #ddd !important;
 }
 
-.skills{
-width: 100%;
-display: inline;
+.calendar .react-calendar__tile--active {
+  background-color: rgb(12, 3, 3)!important;
 }
 
-.skill{
-  display: inline-block;
-  color: #b2b2b2;
-  font-size: 14px;
-  background-color: #f1f1f1d2;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
-  border-radius: 30px;
-  padding: 7px 30px;
-  font-weight: 500;
-  margin: 10px;
+.calendar .react-calendar__tile--hasActive {
+  background-color: rgb(17, 6, 56)!important;
 }
 
-.addedTechLabel{
+.calendar .react-calendar__tile--isDisabled {
+  color: rgb(100, 30, 71)!important;
+}
+
+.calendar button {
+  font-size: 18px;
+  font-family: sans-serif;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.calendar button:hover {
+  background-color: rgb(94, 89, 89);
+}
+
+.calendar .react-calendar__tile--active {
+  background-color: rgb(20, 11, 11);
+}
+
+.medication {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.medication_header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.medication_header img {
   width: 50px;
- 
-}
-.CreateJob{
-  width: auto;
-  text-align: center;
-  margin-top: 100px;
-  margin-left: 40%;
+  height: 50px;
+  margin-right: 15px;
 }
 
-.noItem{
-  color: #E44D3A;
-  text-align: center;
+.medication_info {
+  display: flex;
+  flex-direction: column;
 }
 
-textarea::placeholder {  
-                  
-  /* Firefox, Chrome, Opera */ 
-  text-align: center; 
-  color: #b2b2b2;
+.medication_name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.medication_strength {
   font-size: 14px;
-  
+  color: #666;
+}
 
+.medication_body {
+  padding: 15px;
+}
 
-} 
+.medication_planned_time,
+.medication_planned_dose,
+.medication_status,
+.medication_condition,
+.medication_instructions {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
 
-.attach{
-  margin-top: 15px;
- 
-  cursor: pointer
-
-
+.medication_planned_time {
+  font-weight: bold;
 }

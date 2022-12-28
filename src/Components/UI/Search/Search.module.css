@@ -26,9 +26,44 @@
     background: #9e2d20;
   }
   
-  /* Clear floats */
- ::after {
-    content: "";
-    clear: both;
-    display: table;
+ 
+  input[type="text"] {
+    width: 50%;
+    height: 32px;
+    padding: 0 16px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    display: block;
   }
+  
+  ul {
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    clear: both;
+  }
+  
+  li {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 16px;
+    color: #666;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    display: block;
+    margin-top: 50px;
+    clear: both;
+  }
+  
+  li:hover {
+    background-color: #eee;
+  }
+  
+  li.selected {
+    background-color: #ccc;
+    color: #fff;
+  }
+ 

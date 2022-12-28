@@ -4,8 +4,8 @@ import { Route, Switch ,Redirect,withRouter} from 'react-router-dom';
 import Auth from "./containers/AuthPage/AuthPage"
 import { connect } from 'react-redux';
 import * as actions from "./store/actions/index"
-import ApplayJob from "./containers/applayJob/applayJob";
-import Proposals from "./containers/proposals/Proposals";
+import Doses from "./containers/applayJob/applayJob";
+import Medications from "./containers/proposals/Proposals";
 import Chat from "./containers/Chat/Chat";
 function App(props) {
   const [autologinDone, setAutoLoginDone] = useState(false)
@@ -29,9 +29,8 @@ if(autologinDone){
     routes=(
       <react.Fragment>
         <Switch>
-        <Route path="/applay" component={ApplayJob}  exact />
-        <Route path="/proposals" component={Proposals}  exact />
-        <Route path="/chat" component={Chat}  exact />
+        <Route path="/doses" component={Doses}  exact />
+        <Route path="/medication" component={Medications}  exact />
         <Route path="/" component={HomePage}  exact />
         <Redirect to="/"/>
       

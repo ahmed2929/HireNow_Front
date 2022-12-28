@@ -18,12 +18,6 @@ const Proposals=(props)=>{
             <NavBar />
             
             <div className={continer.continer+' '+classes.body}>
-                <div className={classes.ProfileCard}>
-                <ProfileCard />
-                </div>
-                
-                  
-               
                 <div className={classes.Jobs}>
                 <ProposalsComponent />
                 </div>

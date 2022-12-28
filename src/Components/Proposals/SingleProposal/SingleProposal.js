@@ -19,32 +19,16 @@ function msToTime(duration) {
   return hours 
 }
 function Job(props) {
+  const frequancyArr=[`Days of week schedule `, `As Needed  `, `Every Day` , `Days Interval`]
   const [showModal,setShowModal] = useState(false);
-  const [ChatRoomUsers ,setChatRoomUsers]=useState([])
-  const [acceptProposal, { data, loading, error }] = useMutation(CHANGE_PROPOSAL_STATUS);
-  const [sendMessageMutation, { data:sendMessageData, loading:sendMessageMutationLoading, error:sendMessageMutationError }] = useMutation(SEND_MESSAGE);
-  const {  data:getChatRoomsData,loading:getChatRoomsDataLoading } = useQuery(GET_CHAT_ROOMS,{onCompleted:(data)=>{
-    
-    console.log("on complet runs and data is ",data.getChatRooms.ChatRoomUsers)
-    setChatRoomUsers(data.getChatRooms.ChatRoomUsers)
-    data.getChatRooms.ChatRoomUsers.forEach(element => {
-      
-      if(element.user.id === props.proposalData.applicant.id){
-        console.log("found user in chat room")
-        setRoomId(element.roomId);
-        return
-      }
-      
-    });
+  const [loading,setLoading] = useState(false); 
+ 
    
   
-  }})
+  
 
 
   const [ModalState, setModalState] = useState(false);
-  const [RoomIdState,setRoomId]=useState(null)
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([]);
   const closeModal=()=>{
     setModalState(!ModalState)
   }
@@ -52,110 +36,18 @@ function Job(props) {
     setModalState(true)
   }
 
-  const sendMessage =async(e,message,roomId,to)=>{
-
-    try {
-      
-      e.preventDefault();
-      const from = localStorage.getItem("_id")
-      setMessages([...messages,{content:message,from:from}]);
-     
-
-      
-      const {data}= await sendMessageMutation({ variables: { roomId: roomId, content:message,to:to},
-       
-      
-      
-      
-      
-      }); 
-   
-  
-  
-  
-    } catch (error) {
-      console.log(error);
-      
-    }
-  
-  
-
-
-  }
-
-
-
-
-const acceptPropsalHandler=async(e,key)=>{
-
-  try {
-    
-    const {data}= await acceptProposal({ variables: { id: props.proposalData.id, status:'approved'} }); 
-   console.log("proposla data response form server ",data)  
-   
-    props.handleDeleteElem(e,key)
-
-
-
-  } catch (error) {
-    console.log(error);
-    
-  }
-
-
-
-
-}
-const rejectPropsalHandler=async(e,key)=>{
-
-  try {
-    console.log("handler runs")
-   
-    const {data}= await acceptProposal({ variables: { id: props.proposalData.id, status:'rejected'} }); 
-   console.log("proposla data response form server ",data)  
-   
-    props.handleDeleteElem(e,key)
-
-
-
-  } catch (error) {
-    console.log(error);
-    
-  }
-
-
-}
-const chatHandler=()=>{
-setShowModal(true)
-openModal()
-
-
-
-}
-
-if(showModal){
-  return (
-    <Modal 
-    displayModal={ModalState}
-    closeModal={closeModal}
-    setShowModal={setShowModal}
-  > 
-  {
-    !getChatRoomsDataLoading? <ChatBox data={messages} RoomId={RoomIdState} to={props.proposalData.applicant.id} sendMessage={(e,message,roomId,to)=>{sendMessage(e,message,roomId,to)}}/>:null
-  }
  
-  
-  </Modal>
-  )
-}
+
+
+
+
+
+
 
 if (loading) return (
   <div className={classes.Loader} >
   <Loader />  
     </div>
-
-  
-
   )
 
   return (
@@ -165,57 +57,41 @@ if (loading) return (
      <div className={classes.profileInfo}>
            <div className={classes.content}> 
            <div className={classes.image}>
-           <img src={props.proposalData.applicant.photo}  alt="user-img" className={classes.img}></img>
+           <img src={props.proposalData.img||'https://www.shutterstock.com/image-vector/vector-medicine-illustration-medical-pill-260nw-1067945834.jpg'}  alt="med-img" className={classes.img}></img>
 
            </div>
-            <div className={classes.name}>{props.proposalData.applicant.name}</div>
-           
+            <div className={classes.name}>{`${props.proposalData.name}`}</div>
+      
+
           
-
-            
-            <h3 className={classes.jobTitle}>{props.proposalData.job_id.title}</h3>
-           <div className={classes.jobType}>{props.proposalData.job_id.jobType}</div>
-           <span className={classes.MoneyPerHour}>${props.proposalData.job_id.salary}</span>
-
         </div>
            </div>
-          
-          
+
+        <div >
+          {`strenth : ${props.proposalData.strenth}`}
+          <br/>
+          {`condition : ${props.proposalData.condition}`}
+          <br/>
+          {`quantity : ${props.proposalData.quantity}`}
+          <br/>
+          {`frequancy : ${frequancyArr[props.proposalData.Schduler.ScheduleType]}`}
+          <br/>
+          {`start date : ${new Date(props.proposalData.Schduler.StartDate)}`}
+          <br/>
+          {`end date : ${new Date(props.proposalData.Schduler.EndDate)}`}
+          <br/>
+          {`dosage per day : ${props.proposalData.Schduler.dosage.length}`}
+          <br/>
+        </div>  
+        
 
         <p className={classes.jobDiscribition}>
-        {props.proposalData.job_id.Descrition}
+        {props.proposalData.description}
         
         
         </p>
        
-        <div className={classes.skils}>
-        {
-          props.proposalData.job_id.technologies.map(elem=>{
-          
-            return(<div className={classes.skill}>
-            {elem}
-          </div>)
-          })
-        }
-        {props.proposalData.file_uri?<p className={classes.jobDiscribition}>attachedFile: <a href={props.proposalData.file_uri} download className={classes.downloadButton}> download</a> </p>:null}
-   {
-     props.act ==='2' ?  
-     <react.Fragment>
-       <button className={classes.button} onClick={(e)=>acceptPropsalHandler(e,props.key)}>accept</button>
-    <button className={classes.button} onClick={rejectPropsalHandler}>reject</button>
-    <button className={classes.button} onClick={chatHandler}>chat</button>
-     </react.Fragment>
-     
-     
-     : <p className={classes.jobDiscribition}>proposal status : <span className={classes.skill}>{props.proposalData.status}</span>  </p>
-
-
-   }
-    
-          
-        
-
-        </div>
+      
      </div>
      </div>
     </react.Fragment>

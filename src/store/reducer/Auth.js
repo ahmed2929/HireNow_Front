@@ -21,14 +21,7 @@ import * as actionType from "../actions/actionTypes"
 const initialState = {
    token:null,
    refreshToken:null,
-   name:null,
-   email:null,
-    photo:null,
-   error:null,
-   loading:false,
-   _id:null,
-   act:null,
-   emailVerfied:null
+    user:null
 }
  /* eslint-disable */ 
 export default (state = initialState, { type ,token,refreshToken,user,error}) => {
@@ -40,12 +33,7 @@ export default (state = initialState, { type ,token,refreshToken,user,error}) =>
             ...state,
            token,
            refreshToken,
-          name:user.name,
-          email:user.email,
-          photo:user.photo,
-          _id:user.id,
-            act:user.act,
-            emailVerfied:user.emailVerfied
+            user
 
 
         
@@ -72,14 +60,7 @@ export default (state = initialState, { type ,token,refreshToken,user,error}) =>
                 
                 token:null,
                 refreshToken:null,
-                name:null,
-                email:null,
-                photo:null,
-                error:null,
-                loading:false,
-                _id:null,
-                act:null,
-                emailVerfied:null
+                user:null
                     
             
             

@@ -69,10 +69,18 @@ width: 50%;
 
 .img{
     width: 100%;
-    padding-left: 10px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
     max-width: 100%;
-    float: left;
-    margin-bottom: 30px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 16px;
+    margin-bottom: 2px;
 }
 .intro{
     color: #666666;
