@@ -110,10 +110,9 @@ function PersonCard(props) {
 
         <div className={classes.viewProfile}>
           {
-            
-         
+            localStorage.getItem('verified')==="false"?
             <button className={classes.button} onClick={()=>setModalState({ModalState:true})}>activate account</button>
-           
+           :null
           }
 
           

@@ -1,54 +1,11 @@
 import react,{useState,useEffect} from "react"
-import classes from "./SingleProposal.module.css"
-import {NavLink, Redirect,Link} from "react-router-dom"
+import classes from "./SingleMedication.module.css"
 import { connect } from 'react-redux';
-import { useMutation,useLazyQuery, from,useQuery } from '@apollo/client';
-import {CHANGE_PROPOSAL_STATUS} from "../../../services/graphal/jobs/proposals"
-import {SEND_MESSAGE,GET_CHAT_ROOMS} from "../../../services/graphal/chat/Chat"
-import Loader from "../../loader/Loader"
-import  Modal  from "../../Modal/Modal";
-import ChatBox from "../../Chat/ChatBox/ChatBox";
-import Chat from "../../Chat/Chat";
-function msToTime(duration) {
-  var milliseconds = parseInt((duration % 1000) / 100),
-    seconds = Math.floor((duration / 1000) % 60),
-    minutes = Math.floor((duration / (1000 * 60)) % 60),
-    hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-  hours = (hours < 10) ? "0" + hours : hours;
-  return hours 
-}
-function Job(props) {
+
+function Medication(props) {
   const frequancyArr=[`Days of week schedule `, `As Needed  `, `Every Day` , `Days Interval`]
-  const [showModal,setShowModal] = useState(false);
-  const [loading,setLoading] = useState(false); 
  
-   
-  
-  
-
-
-  const [ModalState, setModalState] = useState(false);
-  const closeModal=()=>{
-    setModalState(!ModalState)
-  }
-  const openModal=()=>{
-    setModalState(true)
-  }
-
- 
-
-
-
-
-
-
-
-if (loading) return (
-  <div className={classes.Loader} >
-  <Loader />  
-    </div>
-  )
 
   return (
     <react.Fragment>
@@ -105,6 +62,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect( mapStateToProps )( Job )
+export default connect( mapStateToProps )( Medication )
 
 

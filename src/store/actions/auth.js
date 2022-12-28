@@ -1,8 +1,4 @@
 import * as actionTypes from "./actionTypes"
-import { useMutation,useLazyQuery } from '@apollo/client';
-import {REGISTER_USER,LOGIN_USER} from "../../services/graphal/auth/authDataSchema"
-
-
 
 export const authSuccess=(token,refreshToken ,user)=>{
     console.log("auth action runs")

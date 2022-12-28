@@ -1,10 +1,7 @@
 import react ,{useState,useEffect,useHistory} from "react"
 import classes from "./AuthPage.module.css"
-import { useMutation,useLazyQuery } from '@apollo/client';
-import {REGISTER_USER,LOGIN_USER} from "../../services/graphal/auth/authDataSchema"
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
-import { AUTH_LOGOUT } from "../../store/actions/actionTypes";
 import axios from 'axios';
 import BaseUrl from "../../StaticData";
 const AuthPage=(props)=>{
@@ -18,25 +15,11 @@ const AuthPage=(props)=>{
     const [email,updateEmail] =useState("")
     const [password,updatePassword] =useState("")
     const [ErrorMassage,UpdateErrorMassge]=useState("")
+    const [loading,setLoading]= useState(false);
     
-    const [registerUser, registerLoading] = useMutation(REGISTER_USER,{
-      update(proxy,result){
-          console.log(result)
-      },
-      // variables:{
-      //   name:Name,
-      //   email:Email,
-      //   password,
-      //   act
-      // }
-  });
+  
  
-   const [loginUser,{loading}] = useMutation(LOGIN_USER,{
-    //  variables:{
-    //    email:Email,
-    //    password:password,
-    //  }
- })
+ 
 
 
 

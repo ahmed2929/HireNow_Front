@@ -1,2 +1,2 @@
-const BaseUrl =`http://localhost:4000/api/v1/`
+const BaseUrl =`https://voithy-dev-v1.azurewebsites.net/api/v1/`
 export default BaseUrl

@@ -1,16 +1,13 @@
 import react ,{useState,useEffect,useHistory} from "react"
-import classes from "./Proposals.module.css"
-//import {NavLink} from "react-router-dom"
+import classes from "./Medications.module.css"
+
 import axios from "axios";
-import {useQuery } from '@apollo/client';
-import {GET_JOBS} from "../../services/graphal/jobs/getJob"
-import {GET_PROPOSALS} from "../../services/graphal/jobs/proposals"
 import Loader from "../loader/Loader";
-import SingleProposal from "./SingleProposal/SingleProposal";
+import SingleMedication from "./SingleMedication/SingleMedication";
 import BaseUrl from "../../StaticData";
 
-const  Proposals=()=> {
-  const [loading,setLoading]= useState(false);
+const  Medications=()=> {
+  const [loading,setLoading]= useState(true);
   const [medications,setMedications] = useState([]);
   try {
 
@@ -53,7 +50,7 @@ const  Proposals=()=> {
          medications.data.length>0?
          medications.data.map((elem,i)=>{
              console.log("elem ",elem)
-              return <SingleProposal proposalData={elem} key={i}/>
+              return <SingleMedication proposalData={elem} key={i}/>
             }):(<h1>no med to display</h1>)
   
   
@@ -79,4 +76,4 @@ const  Proposals=()=> {
  
 }
 
-export default Proposals;
+export default Medications;

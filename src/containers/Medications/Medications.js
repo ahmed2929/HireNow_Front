@@ -1,14 +1,13 @@
 import react from "react"
-import classes from "./Chat.module.css"
+import classes from "./Medications.module.css"
 import continer from "../../asset/sharedcss.module.css"
 import NavBar from "../../Components/Navigation/ToolBar/ToolBar"
-
 import { withRouter} from 'react-router-dom';
+import Medications from "../../Components/Medications/Medications";
 import { connect } from 'react-redux';
-import ChatComponent from "../../Components/Chat/Chat"
-const Chat=(props)=>{
-  
-     
+const meds=(props)=>{
+   
+ 
 
     //nav
     return (
@@ -16,8 +15,10 @@ const Chat=(props)=>{
             <NavBar />
             
             <div className={continer.continer+' '+classes.body}>
-           <ChatComponent />
-               
+                <div className={classes.Jobs}>
+                <Medications />
+                </div>
+                
               
             </div>
         </react.Fragment>
@@ -34,5 +35,5 @@ const mapStateToProps = state => {
  
   
   
-export default withRouter(connect( mapStateToProps )( Chat ));
+export default withRouter(connect( mapStateToProps )( meds ));
 

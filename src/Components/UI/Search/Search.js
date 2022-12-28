@@ -25,14 +25,14 @@ function Search(props) {
     <div>
       <input
         type="text"
-        value={query}
+        
         onChange={event => setQuery(event.target.value)}
         placeholder="search for med"
       />
       {searchResults.length > 0 && (
         <ul>
           {searchResults.map(result => (
-            <li key={result.id} onClick={() => handleResultSelection(result)}>
+            <li key={result._id} onClick={() => handleResultSelection(result)}>
               {result.PackageName} ({result.GenericName})
             </li>
           ))}

@@ -1,22 +1,6 @@
 import * as actionType from "../actions/actionTypes"
 
 
-// {
-//     "data": {
-//         "login": {
-//             "user": {
-//                 "name": "asa",
-//                 "photo": "https://img.icons8.com/bubbles/50/000000/user-male.png",
-//                 "email": "ooo",
-//                 "__typename": "User"
-//             },
-//             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MGNiOTU3NWE2M2E4ZTFmOGE5MTZlNzQiLCJpYXQiOjE2MjQzNzI1MjIsImV4cCI6MTYyNDM3NjEyMn0.Bp0AG1QZKHTY5DGtYnZNyidWSNDIE6h7OO4wvFLIr6c",
-//             "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MGNiOTU3NWE2M2E4ZTFmOGE5MTZlNzQiLCJpYXQiOjE2MjQzNzI1MjIsImV4cCI6MTYyNjk2NDUyMn0.ALKon_cNg94zpf3r0d-LpwJ1J0vse7yhKu-hPSyEfkM",
-//             "__typename": "Auth"
-//         }
-//     }
-// }
-
 
 const initialState = {
    token:null,

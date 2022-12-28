@@ -3,15 +3,13 @@ import classes from "./HomePage.module.css"
 import continer from "../../asset/sharedcss.module.css"
 import NavBar from "../../Components/Navigation/ToolBar/ToolBar"
 import ProfileCard from "../../Components/Person/PersonSamaryCard/PersonSamaryCard"
-import CreatePost from "../../Components/Posts/CreatePost/CreatePost"
-import Jobs from "../../Components/jobs/jobs"
 import { withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import Search from "../../Components/UI/Search/Search"
 import Modal from "../../Components/Modal/Modal"
 import axios from "axios"
 import BaseUrl from "../../StaticData"
-import SingleMedication from "../../Components/Proposals/SingleProposal/SingleProposal"
+import SingleMedication from "../../Components/Medications/SingleMedication/SingleMedication"
 const HomePage=(props)=>{
   try {
     
@@ -249,26 +247,33 @@ const removeDosage = index => {
       </label>
       <br />
       <label>
-        Name:
+      nickname:
         </label>
-        <input type="text" name="name" value={formData.name} onChange={handleChange} />
+        <input type="text" name="name" value={formData.name} onChange={handleChange} required/>
       
       <br />
+        <br></br>
+        
+      <label>
+        Name:
+        </label>
+        <input disabled={true} value={`${medRecommenation.GenericName}(${medRecommenation.PackageName})`}/>
+
       <br/> 
       <label>
         Description:
-        <textarea name="description" value={formData.description} onChange={handleChange} />
+        <textarea name="description" value={formData.description} onChange={handleChange} required />
       </label>
       <br />
       <label>
         Strength:
-        <input type="number" name="strength"  min="0"  onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"  value={formData.strength} onChange={handleChange} />
+        <input type="number" name="strength"  min="1"    value={formData.strength} onChange={handleChange} required/>
       </label>
       <br />
       <label>
         Unit:
-        <select name="unit" default="g" onChange={handleChange}>
-        <option>choose unit</option>
+        <select name="unit" default="g" onChange={handleChange} required>
+        <option value="">choose unit</option>
           <option value="g">g</option>
           <option value="mg">mg</option>
           <option value="ml">ml</option>
@@ -277,25 +282,25 @@ const removeDosage = index => {
       <br />
       <label>
         Quantity:
-        <input type="number" name="quantity"  min="0"  value={formData.quantity} onChange={handleChange} />
+        <input type="number" name="quantity"  min="1"  value={formData.quantity} onChange={handleChange} required/>
       </label>
       <br />
       <label>
         Instructions:
-        <textarea name="instructions" value={formData.instructions} onChange={handleChange} />
+        <textarea name="instructions" value={formData.instructions} onChange={handleChange} required/>
       </label>
       <br />
       <label>
         Condition:
         </label>
-        <input type="text" name="condition" value={formData.condition} onChange={handleChange} />
+        <input type="text" name="condition" value={formData.condition} onChange={handleChange} required/>
      
       <br />
       <br/>
       <label>
         Type:
-        <select name="type"  default="pill" onChange={handleChange}>
-          <option>choose type</option>
+        <select name="type"  default="pill" onChange={handleChange} required>
+          <option value="">choose type</option>
           <option value="pill">Pill</option>
           <option value="liquid">Liquid</option>
           <option value="injection">Injection</option>
@@ -311,19 +316,19 @@ const removeDosage = index => {
       <br />
       <label>
   Start Date:
-  <input type="date" name="startDate" value={formData.startDate} minDate="0" onChange={handleChange} />
+  <input type="date" name="startDate" value={formData.startDate}  onChange={handleChange} required/>
 </label>
 <br />
 <label>
   End Date:
-  <input type="date" name="endDate" value={formData.endDate} onChange={handleChange} />
+  <input type="date" name="endDate" value={formData.endDate} onChange={handleChange} required/>
 </label>
 <br />
 <br />
 <label>
   Schedule Type:
-  <select name="scheduleType" value={formData.scheduleType} onChange={handleChange}>
-  <option value="5">choose scheduleType</option>
+  <select name="scheduleType" value={formData.scheduleType} onChange={handleChange} required>
+  <option value="">choose scheduleType</option>
     <option value="0">Days of week schedule</option>
     <option value="1">As needed</option>
     <option value="2">Every day</option>
@@ -338,7 +343,7 @@ const removeDosage = index => {
 
   <label>
   Days Interval:
-  <input type="number" name="daysInterval" min="0" value={formData.daysInterval} onChange={handleChange} />
+  <input type="number" name="daysInterval" min="2" value={formData.daysInterval} onChange={handleChange} required/>
 </label>
   
   :null
@@ -350,7 +355,7 @@ const removeDosage = index => {
   formData.scheduleType==='0' ?
   <label>
   Specific Days:
-  <select name="specificDays" multiple value={formData.specificDays} onChange={handleChange}>
+  <select name="specificDays" multiple value={formData.specificDays} onChange={handleChange} required>
     <option value="Sunday">Sunday</option>
     <option value="Monday">Monday</option>
     <option value="Tuesday">Tuesday</option>
@@ -372,8 +377,8 @@ const removeDosage = index => {
   Dosage:
   {formData.dosage.map((d, index) => (
     <div key={index}>
-      <input type="datetime-local" name={`dosage-${index}-DateTime`} onChange={handleChange} placeholder="dose time" min={new Date().toISOString().slice(0, 16)}/>
-      <input type="number" name={`dosage-${index}`} value={d.dose} onChange={handleChange} min="0" placeholder="enter dose"/>
+      <input type="datetime-local" name={`dosage-${index}-DateTime`} onChange={handleChange} placeholder="dose time" min={new Date().toISOString().slice(0, 16)} required/>
+      <input type="number" name={`dosage-${index}`} value={d.dose} onChange={handleChange} min="1" placeholder="enter dose"/>
       <button type="button" style={{margin:"15px",width:"auto"}}   onClick={() => removeDosage(index)}>Remove</button>
     </div>
   ))}

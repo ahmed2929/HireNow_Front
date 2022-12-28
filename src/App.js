@@ -4,9 +4,8 @@ import { Route, Switch ,Redirect,withRouter} from 'react-router-dom';
 import Auth from "./containers/AuthPage/AuthPage"
 import { connect } from 'react-redux';
 import * as actions from "./store/actions/index"
-import Doses from "./containers/applayJob/applayJob";
-import Medications from "./containers/proposals/Proposals";
-import Chat from "./containers/Chat/Chat";
+import Doses from "./containers/doses/doses";
+import Medications from "./containers/Medications/Medications";
 function App(props) {
   const [autologinDone, setAutoLoginDone] = useState(false)
   useEffect(()=>{
